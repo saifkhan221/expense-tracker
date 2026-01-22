@@ -1,0 +1,114 @@
+.btn {
+	--btn-color: #{$black};
+	--btn-pad-t: calc(var(--btn-pad-y) * 1.1);
+	--btn-pad-b: calc(var(--btn-pad-y) * 0.9);
+
+	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3rem;
+	font-family: $font-family-heading;
+	font-stretch: 125%;
+	font-weight: 500;
+	color: $black;
+	text-align: center;
+	text-transform: uppercase;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
+	background: transparent;
+	border: 1px solid var(--btn-color);
+	padding: var(--btn-pad-t) var(--btn-pad-x) var(--btn-pad-b);
+	border-radius: 16px;
+	transition: color .15s ease-in-out, border-color .15s ease-in-out, background-color .15s ease-in-out;
+	
+	// Media Queries
+	@include media-breakpoint-up(lg) {
+		font-size: 1.4rem;
+	}
+
+	// Arrow icon
+	&::after {
+		display: inline-block;
+		content: '';
+		width: 1.786em;
+		height: 1.786em;
+		background: url('/img/icons/arrow-cta.svg') no-repeat bottom;
+		background-size: 100% 100%;
+		margin: calc(var(--btn-pad-t) * -1) -0.5em calc(var(--btn-pad-b) * -1) 0.35em;
+		transition: transform .15s ease-in-out, filter .15s ease-in-out;
+	}
+
+	&:hover,
+	&:focus-visible {
+		color: $white;
+		background: var(--btn-color);
+
+		&::after {
+			transform: rotate(45deg);
+			filter: brightness(0) invert(1);
+		}
+	}
+	
+	&:hover,
+	&:focus {
+		outline: 0;
+		text-decoration: none;
+	}
+	&.disabled,
+	&:disabled {
+		opacity: 0.65;
+		pointer-events: none;
+	}
+
+	// Colors
+	&.btn--white {
+		--btn-color: #{$white};
+		
+		color: var(--btn-color);
+
+		&::after {
+			filter: brightness(0) invert(1);
+		}
+
+		&:hover,
+		&:focus-visible {
+			color: $black;
+
+			&::after {
+				filter: none;
+			}
+		}
+	}
+
+	// Sizes
+	&.btn--lg {
+		border-radius: 20px;
+		padding: calc(var(--btn-pad-t) * 1.25) calc(var(--btn-pad-x) * 1.2) calc(var(--btn-pad-b) * 1.25);
+	
+		// Media Queries
+		@include media-breakpoint-up(lg) {
+			font-size: 1.5rem;
+		}
+	}
+	&.btn--xs {
+		font-size: 2.4rem;
+	
+		// Media Queries
+		@include media-breakpoint-up(lg) {
+			font-size: 1.4rem;
+		}
+	}
+
+	// Arrow type
+	&.btn--left {
+		flex-direction: row-reverse;
+
+		&::after {
+			transform: rotate(225deg);
+			margin: calc(var(--btn-pad-t) * -1) 0.5em calc(var(--btn-pad-b) * -1) -0.35em;
+		}
+	}
+}
+
